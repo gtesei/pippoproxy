@@ -1,0 +1,112 @@
+#
+# Proxy Properties File 
+#
+
+#
+# If ENABLE_SESSION_ATTR_KEY_FOR_LOGIN is set to true then all requests whose session 
+# has no value for the key specified by SESSION_ATTR_KEY_FOR_LOGIN are rejected.
+#
+ENABLE_SESSION_ATTR_KEY_FOR_LOGIN=false
+
+#
+# SESSION_ATTR_KEY_FOR_LOGIN is considered only if ENABLE_SESSION_ATTR_KEY_FOR_LOGIN is set to true. 
+#
+SESSION_ATTR_KEY_FOR_LOGIN=
+
+#
+# If CACHE_ENABLED is set to false, then all HTTP GET/POST are no cached. This is the case if the 
+# proxied web site is dynamic. 
+# Otherwise, a cache is used. The caching (Last Recently Used) algorithm considers a (in memory) queue 
+# and for each page hit the related resource is pushed to the head of queue shifting down all other nodes. 
+# If the total amount of in memory resources excedes the value specified by CACHE_MAX_MEMORY_SIZE then 
+# a suitable set of last positioned nodes is discarded to filesystem where another cache works. 
+# The caching (Last Recently Used) algorithm here considers a (filesystem) queue and for each node 
+# discarded from the in memory cache all nodes are shifted down in the queue. If a 
+# resource is requested, the related node is pushed from the filesystem queue to the head of in memory 
+# queue. If the total amount of resources in filesystem excedes the value (in MB) specified by CACHE_MAX_DISK_SIZE, 
+# a suitable set of last positioned nodes is destroyed. 
+#
+CACHE_ENABLED=true
+
+#
+# CACHE_TIMEOUT (in millis) specifies when a resource is stale.  
+#
+CACHE_TIMEOUT=3600000
+
+#
+# CACHE_MAX_MEMORY_SIZE (in MB) specifies the max amount of memory available. 
+#
+CACHE_MAX_MEMORY_SIZE=2
+
+#
+# CACHE_MAX_DISK_SIZE (in MB) specifies the max amount of disk available. 
+#
+CACHE_MAX_DISK_SIZE=10
+
+#
+# CACHE_PATH_DIR specifies directory path where the filesystem cache is stored. 
+# Note: try to use absolute path. 
+#
+CACHE_PATH_DIR=cache
+
+#
+# REMOTE_HOST specifies the remote host to proxy. 
+#
+REMOTE_HOST=www.apache.org
+
+#
+# REMOTE_PORT specifies the remote port where to proxy the remote host. 
+#
+REMOTE_PORT=80
+
+#
+# Specifies if it runs as web a application, i.e. under a web context such as 
+# http://<myhost>:<my_port>/<application_name>/<LOCAL_PREFIX>/ or if it is 
+# the root application, i.e. it runs under http://<myhost>:<my_port>/
+#
+IS_ROOT=true 
+
+#
+# Setting IS_ROOT to "false" an HTTP request 
+# http://<myhost>:<my_port>/<application_name>/<LOCAL_PREFIX>/a.html is fetched from 
+# http://<REMOTE_HOST>:<REMOTE_PORT>/REMOTE_PREFIX/a.html.  
+# Setting IS_ROOT to "true" an HTTP request http://<myhost>:<my_port>/a.html 
+# is fetched from http://<REMOTE_HOST>:<REMOTE_PORT>/REMOTE_PREFIX/a.html.  
+#
+REMOTE_PREFIX=
+LOCAL_PREFIX=
+
+#
+# NOT_ALLOWED_HEADERS specifies the pipe separated list of HTTP headers not proxied if present. 
+#
+NOT_ALLOWED_HEADERS=
+
+#
+# PROXY_ENABLED specifies to reach the proxied site a further HTTP is to be set up. 
+#
+PROXY_ENABLED=false
+
+#
+# If PROXY_ENABLED is set to true, PROXY_HOST specifies the proxy host. 
+#
+PROXY_HOST=
+
+#
+# If PROXY_ENABLED is set to true, PROXY_PORT specifies the proxy port. 
+#
+PROXY_PORT=
+
+#
+# PROTOCOL specifies protocols supported (only 'http' currently). 
+#
+PROTOCOL=http
+
+#
+# INIT_CONNECTION specifies the initial number of HTTP clients created and put in the pool.
+#
+INIT_CONNECTION=10
+
+#
+# MAX_CONNECTION specifies the max number of HTTP clients in the pool.
+#
+MAX_CONNECTION=10

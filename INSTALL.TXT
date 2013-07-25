@@ -1,0 +1,116 @@
+                                 Pippo Proxy
+                                 
+  Prerequisites  
+  --------------------------------------------------
+  The following list describes the setup that is tested and recommended.
+  
+     * J2SE 1.4.1 or newer (http://java.sun.com/j2se/1.4.2/download.html)
+     * Apache Ant 1.6.2 or newer (http://www.apache.org/dist/ant/)
+     * Apache Tomcat 5.0 or newer
+                                  
+  
+  For the Impatient -- How to install Pippo Proxy as normal web application 
+  --------------------------------------------------
+  Unzip PippoProxy.zip in a directory (PIPPO_PROXY_HOME). 
+  
+  >cd $PIPPO_PROXY_HOME/pippoproxy-1.0
+  
+  Configure $PIPPO_PROXY_HOME/pippoproxy-1.0/_ant.properties setting the key 
+  deploy_local to the local Tomcat webapps (e.g. C:/java/tomcat/5.0/Tomcat 5.0/webapps).
+  
+  >ant deploy 
+  
+  Start Tomcat ($CATALINA_HOME/bin/startup.sh o %CATALINA_HOME%/bin/startup.bat, under windows). 
+  
+  Go to http://localhost:8080/pp/lp/ and you will se a well known web site ;)
+  
+  
+  
+  For the Impatient -- How to install Pippo Proxy as root web application (advanced)
+  -------------------------------------------------------------
+  Unzip PippoProxy.zip in a directory (PIPPO_PROXY_HOME). 
+  
+  >cd $PIPPO_PROXY_HOME/pippoproxy-1.0
+  
+  >ant jarPkg 
+  
+  Copy $PIPPO_PROXY_HOME/pippoproxy-1.0/build/dist/pp.jar e $PIPPO_PROXY_HOME/pippoproxy-1.0/build/dist/HTTPClient.jar
+  into $CATALINA_HOME/shared/lib/
+  
+  Open $PIPPO_PROXY_HOME/pippoproxy-1.0/build/dist/web.xml and copy the servlet element, i.e. 
+
+  <servlet>
+		<servlet-name>PippoProxyServlet</servlet-name>
+  ... 		
+  </servlet>
+  
+  into the $CATALINA_HOME/shared/conf/web.xml at the end of servlet declarations (i.e. according to DTD);
+  moreover, copy the servlet-mapping element, i.e. 
+  
+  <servlet-mapping>
+	<servlet-name>PippoProxyServlet</servlet-name>
+	<url-pattern>/*</url-pattern>
+  </servlet-mapping>
+  
+  into the $CATALINA_HOME/shared/conf/web.xml at the end of servlet-mapping declarations (i.e. according to DTD). 
+  
+  Finally, comment all the the other servlet-mapping elements (if any) in $CATALINA_HOME/shared/conf/web.xml. 
+  
+  Start Tomcat ($CATALINA_HOME/bin/startup.sh o %CATALINA_HOME%/bin/startup.bat, under windows). 
+    
+  Go to http://localhost:8080/ and you will se a well known web site ;)
+  
+  
+  Full Installation -- How to install Pippo Proxy as normal web application 
+  -------------------------------------------------------------
+  Unzip PippoProxy.zip in a directory (PIPPO_PROXY_HOME). 
+  
+  Configure $PIPPO_PROXY_HOME/pippoproxy-1.0/_ant.properties and $PIPPO_PROXY_HOME/pippoproxy-1.0/_proxy.properties. 
+  
+  > cd $PIPPO_PROXY_HOME/pippoproxy-1.0
+  
+  >ant deploy 
+  
+  Start Tomcat ($CATALINA_HOME/bin/startup.sh o %CATALINA_HOME%/bin/startup.bat, under windows). 
+  
+  Go to http://localhost:8080/<application_name>/<LOCAL_PREFIX> to test your installation, where 
+  application_name is configured in $PIPPO_PROXY_HOME/pippoproxy-1.0/_ant.properties and LOCAL_PREFIX is configured 
+  in $PIPPO_PROXY_HOME/pippoproxy-1.0/_proxy.properties. 
+  
+  
+  Full Installation -- How to install Pippo Proxy as root web application (advanced)
+  -------------------------------------------------------------
+  Unzip PippoProxy.zip in a directory (PIPPO_PROXY_HOME). 
+  
+  Configure $PIPPO_PROXY_HOME/pippoproxy-1.0/_ant.properties and $PIPPO_PROXY_HOME/pippoproxy-1.0/_proxy.properties.root
+  
+  >cd $PIPPO_PROXY_HOME/pippoproxy-1.0
+  
+  >ant jarPkg 
+  
+  Copy $PIPPO_PROXY_HOME/pippoproxy-1.0/build/dist/pp.jar e $PIPPO_PROXY_HOME/pippoproxy-1.0/build/dist/HTTPClient.jar
+  into $CATALINA_HOME/shared/lib/
+  
+  Open $PIPPO_PROXY_HOME/pippoproxy-1.0/build/dist/web.xml and copy the servlet element, i.e. 
+
+  <servlet>
+		<servlet-name>PippoProxyServlet</servlet-name>
+  ... 		
+  </servlet>
+  
+  into the $CATALINA_HOME/shared/conf/web.xml at the end of servlet declarations (i.e. according to DTD);
+  moreover, copy the servlet-mapping element, i.e. 
+  
+  <servlet-mapping>
+	<servlet-name>PippoProxyServlet</servlet-name>
+	<url-pattern>/*</url-pattern>
+  </servlet-mapping>
+  
+  into the $CATALINA_HOME/shared/conf/web.xml at the end of servlet-mapping declarations (i.e. according to DTD). 
+  
+  Finally, comment all the the other servlet-mapping elements (if any) in $CATALINA_HOME/shared/conf/web.xml. 
+  
+  Start Tomcat ($CATALINA_HOME/bin/startup.sh o %CATALINA_HOME%/bin/startup.bat, under windows). 
+    
+  Go to http://localhost:8080/ to test your installation. 
+  

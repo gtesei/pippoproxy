@@ -1,0 +1,161 @@
+<?xml version="1.0"?>
+
+<!--
+=======================================================================
+ This file is part of the PippoProxy project
+ Copyright (C)2004 Gino Tesei
+
+ This library is free software; you can redistribute it and/or
+ modify it under the terms of the GNU Lesser General Public
+ License as published by the Free Software Foundation; either
+ version 2 of the License, or (at your option) any later version.
+
+ This library is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ Lesser General Public License for more details.
+
+ You should have received a copy of the GNU Lesser General Public
+ License along with this library; if not, write to the Free
+ Software Foundation, Inc., 59 Temple Place, Suite 330, Boston,
+ MA 02111-1307, USA
+
+ For questions, suggestions, bug-reports, enhancement-requests etc.
+ I may be contacted at:
+
+ gtesei@yahoo.com
+
+ The PippoProxy's home page is located at:
+
+ http://sourceforge.net/projects/pippoproxy 
+=======================================================================
+-->
+<project default="all" basedir=".">
+
+  <!-- Give user a chance to override without editing this file
+       (and without typing -D each time it compiles it) -->
+  <property file="_ant.properties"/>
+  <!--property file="${user.home}/.ant.properties"/ -->
+  <!-- property environment="env"/ -->
+
+
+  <!--
+       ===================================================================
+         Set the properties that control names and versions
+       ===================================================================
+  -->
+  
+  <target name="setProps" unless="setProps" description="set the properties." >
+  	<property name="outdir" value="./tmp/app" />
+  </target>
+  
+  <target name="init" depends="setProps" description="initialize the properties." >
+  	<tstamp />
+  	<property name="lib" value="./lib" />
+  	
+  	<property name="dist" value="${outdir}/dist" />
+  	<property name="build" value="${outdir}/webclasses" />
+  	<property name="meta" value="${outdir}/meta" />
+  </target>
+  <target name="clean" depends="init" >
+  	<delete dir="${outdir}" />
+  </target>
+  <target name="prepare" depends="init" >
+  	<mkdir dir="${build}" />
+  	<mkdir dir="${dist}" />
+  </target>
+  <target name="compile" depends="prepare" description="compile Java sources.">
+  	<javac srcdir="./java" destdir="${build}" >
+  		<classpath>
+  			<fileset dir="${lib}" >
+  				<include name="**/*.jar" />
+  				<include name="**/*.zip" /> 
+  			</fileset>
+  		</classpath>
+  	</javac>
+  </target>
+  <target name="prepare_meta" >
+  	<filter filtersfile="_proxy.properties"/>
+  	<copy todir="${meta}" filtering="true">
+  		<fileset dir="./meta-data" />
+  	</copy>
+  </target>
+  <target name="package" depends="compile" >
+  	<mkdir dir="${meta}" />
+  	<antcall target="prepare_meta" />	
+  	<war warfile="${dist}/${application_name}.war" webxml="${meta}/web.xml" >
+  		<fileset dir="./jsp" />
+  		<classes dir="${build}" />
+  		<classes dir="./java" /> <!-- help debug -->
+   		<classes file="${meta}/virgilioConf.xml" />
+  		<lib dir="${lib}" >
+  			<exclude name="servlet.jar"/>
+  		</lib>
+  	</war>
+  </target>
+  <target name="deploy" depends="all" >
+  	<echo message="Deleting ${deploy_local}/${application_name}.war ..."/>
+  	<delete file="${deploy_local}/${application_name}.war" />
+  	<echo message="Deleting ${deploy_local}/${application_name}/ ..."/>
+  	<delete dir="${deploy_local}/${application_name}/" />
+  	<echo message="Local deploying onto ${deploy_local} ... "/>
+  	<copy file="${dist}/${application_name}.war" todir="${deploy_local}" />
+  </target>
+  <target name="all"  depends="clean,package"  >
+  </target>
+  <target name="jarPkg"  depends="clean,compile"  >
+  	<jar destfile="${dist}/${application_name}.jar"
+  	       basedir="${build}"
+  	  />
+  	<filter filtersfile="_proxy.properties.root"/>
+  	<copy todir="${dist}" filtering="true">
+  		<fileset file="meta-data/web.xml" />
+  	</copy>
+  	<copy todir="${dist}" >
+  		<fileset dir="${lib}" >
+  		  	<exclude name="servlet.jar" /> 
+  		</fileset>
+  	</copy>
+  </target>
+  <target name="dev" depends="init">
+  	<echo message="Deploying onto ${dev_host} ... "/>
+  	<echo message="stopping ${dev_host} ... "/>
+  	<telnet server="${dev_host}"  >
+  		<read>ogin:</read>
+		<write>${dev_usr}</write>
+	    <read>assword:</read>
+   	    <write>${dev_pwd}</write>
+    	<read>dev-shop-1</read>
+    	<write>su</write>
+    	<read>ssword:</read>
+    	<write>matrix</write>
+    	<read>dev-shop-1</read>
+    	<write>/etc/init.d/resin stop</write>
+    	<read>dev-shop-1</read>
+    	<write>date</write>
+   </telnet>
+   <echo message="uploading ${dist}/${application_name}.war ... "/>
+   <ftp server="${dev_host}"
+       remotedir="${dev_webapps}"
+       userid="${dev_usr}"
+       password="${dev_pwd}" >
+    <fileset file="${dist}/${application_name}.war" />
+  </ftp>
+  <echo message="re-starting ${dev_host} ... "/>
+  <telnet server="${dev_host}"  >
+  		<read>ogin:</read>
+		<write>${dev_usr}</write>
+	    <read>assword:</read>
+   	    <write>${dev_pwd}</write>
+    	<read>dev-shop-1</read>
+    	<write>su</write>
+    	<read>ssword:</read>
+    	<write>matrix</write>
+    	<read>dev-shop-1</read>
+    	<write>/etc/init.d/resin start</write>
+    	<read>dev-shop-1</read>
+    	<write>date</write>
+    	<read>dev-shop-1</read>
+   </telnet>
+  </target>
+</project>
