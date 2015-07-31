@@ -74,6 +74,17 @@
   		</classpath>
   	</javac>
   </target>
+  <target name="test" description="compile Java sources.">
+    <mkdir dir="./build" />
+    <javac srcdir="./java" destdir="./build" >
+  		<classpath>
+  			<fileset dir="./lib" >
+  				<include name="**/*.jar" />
+  				<include name="**/*.zip" /> 
+  			</fileset>
+  		</classpath>
+  	</javac>
+  </target>
   <target name="prepare_meta" >
   	<filter filtersfile="_proxy.properties"/>
   	<copy todir="${meta}" filtering="true">
