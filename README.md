@@ -131,3 +131,8 @@
 * [Design PatternsElements of Reusable Object-Oriented Sofware, E. Gamma, R. Helm, R. Johnson, J. Vlissides (Addison-Wesley Professional, 1995; ISBN0201633612)] (http://www.amazon.com/exec/obidos/ASIN/0201633612/javaworld)
 * [For Ephemeral Cache Item, see "Chapter 7, Concurrency Patterns" in Java Enterprise Design Patterns, Volume 3, Mark Grand (John Wiley & Sons, 2002; ISBN0471333158] (http://www.amazon.com/exec/obidos/ASIN/0471333158/javaworld) 
 * [High Availability Tomcat," Graham King] (http://www.javaworld.com/javaworld/jw-12-2004/jw-1220-tomcat.html)
+* [Tomcat FAQ about connectors] (http://jakarta.apache.org/tomcat/faq/connectors.html)
+* [The Apache Jakarta Tomcat Connector] (http://jakarta.apache.org/tomcat/connectors-doc/)
+* [Visit Wikipedia for the Law of Demeter] (http://en.wikipedia.org/wiki/Law_of_Demeter) 
+* [Visit Wikipedia for the principle of locality] (http://en.wikipedia.org/wiki/Principle_of_locality)
+* [For an introduction to extreme programming, read the bible by Kent BeckExtreme Programming Explained (Addison-Wesley Professional; 1999ISBN0201616416)] (http://www.amazon.com/exec/obidos/ASIN/0201616416/javaworld)
