@@ -125,3 +125,7 @@
 
 ## References 
 * [PippoProxy homepage] (http://sourceforge.net/projects/pippoproxy/)
+* [Tomcat homepage] (http://tomcat.apache.org/)
+* [Ant homepage] (http://ant.apache.org/)
+* [HTTPClient homepage] (http://www.innovation.ch/java/HTTPClient/)
+* [Design PatternsElements of Reusable Object-Oriented Sofware, E. Gamma, R. Helm, R. Johnson, J. Vlissides (Addison-Wesley Professional, 1995; ISBN0201633612)] ()
