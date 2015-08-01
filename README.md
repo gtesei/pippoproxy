@@ -8,8 +8,7 @@
   Apache Tomcat (5.0 or newer). Thanks to its cache manager (that can be 
   disabled in case of DYNAMIC proxied web sites) it's really very performant 
   in case of STATIC proxied web sites (a traditional well known Tomcat limit).
-  Untill now, Apache Tomcat provides proxy support 
-  (http://jakarta.apache.org/tomcat/tomcat-5.0-doc/proxy-howto.html)  by 
+  Untill now, Apache Tomcat provides proxy support by 
   using Apache Web Server proxy support (mod_proxy). But many times, in 
   production applications use a servlet engine (eg. Apache Tomcat) but not 
   Apache Web Server. Moreover, many times java written applications 
@@ -123,3 +122,6 @@
   by CACHE_MAX_DISK_SIZE, a suitable set of last positioned nodes is destroyed. 
   
   Resources are refreshed according to CACHE_TIMEOUT value (es. 2h). 
+
+## References 
+* [PippoProxy homepage]: http://sourceforge.net/projects/pippoproxy/ "PippoProxy homepage"
