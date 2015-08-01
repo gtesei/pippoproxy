@@ -124,4 +124,4 @@
   Resources are refreshed according to CACHE_TIMEOUT value (es. 2h). 
 
 ## References 
-* [PippoProxy homepage]: http://sourceforge.net/projects/pippoproxy/ "PippoProxy homepage"
+* [PippoProxy homepage] (http://sourceforge.net/projects/pippoproxy/)
