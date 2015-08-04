@@ -3,4 +3,4 @@ language: java
 install: ant jarPkg
 
 after_success:
-  - coveralls
+  - mvn clean cobertura:cobertura org.eluder.coveralls:coveralls-maven-plugin:report
