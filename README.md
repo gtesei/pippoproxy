@@ -1,6 +1,7 @@
 # Pippo Proxy
 
 [![Build Status](https://api.travis-ci.org/gtesei/pippoproxy.svg?branch=master)](https://travis-ci.org/gtesei/pippoproxy)
+[![Coverage Status](https://coveralls.io/repos/gtesei/pippoproxy/badge.svg?branch=master&service=github)](https://coveralls.io/github/gtesei/pippoproxy?branch=master)
 
 ## What is it?
 
