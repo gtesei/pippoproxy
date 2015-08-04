@@ -1,3 +1,6 @@
 language: java
 
 install: ant jarPkg
+
+after_success:
+  - coveralls
