@@ -3,4 +3,4 @@ language: java
 install: ant jarPkg
 
 after_success:
-  - mvn clean cobertura:cobertura org.eluder.coveralls:coveralls-maven-plugin:report
+  - Rscript -e 'library(covr);coveralls()'
